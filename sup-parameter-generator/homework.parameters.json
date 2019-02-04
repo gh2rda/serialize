@@ -1,0 +1,35 @@
+{
+  "version": "mytest ver 1.0",
+  "parameters": [
+    {
+      "name": "some nameRDA",
+      "description": "foo description RDA",
+      "isList": true,
+      "roles": [
+        "ADMIN",
+        "USER",
+        "SUPER_VISOR"
+      ],
+      "type": "LONG",
+      "bundle": [
+        {
+          "path": [
+            {
+              "code": "RDA VERSION",
+              "value": "rda false"
+            },
+            {
+              "code": "CHANNEL RDA",
+              "value": "${channel-code} rda"
+            }
+          ],
+          "values": [
+            "ppppp",
+            "erwerwe",
+            "dvdfsgdfgdfgsdf"
+          ]
+        }
+      ]
+    }
+  ]
+}
