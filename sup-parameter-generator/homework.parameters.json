@@ -24,9 +24,33 @@
             }
           ],
           "values": [
-            "ppppp",
+            "1234546",
             "erwerwe",
-            "dvdfsgdfgdfgsdf"
+            "ФЫЫВВВВВВВВВВВ"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2 NODE nameRDA",
+      "description": "описание",
+      "isList": false,
+      "roles": [
+        "админ",
+        "пользователь"
+      ],
+      "type": "LONG",
+      "bundle": [
+        {
+          "path": [
+            {
+              "code": "код",
+              "value": "значение"
+            }
+          ],
+          "values": [
+            "*#;$%\"*?_:№\"()",
+            "ФЫЫВВВВВВВВВВВ"
           ]
         }
       ]
