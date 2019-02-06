@@ -42,14 +42,12 @@ public class HomeWork {
         JsonParameterReader service = new JsonParameterReader();
         JsonFileClass business = null;
         JsonFileClassExt businessExt = null;
-
-        System.out.println("Значение business: " + business);
         System.out.println("Считываем данные из файла " + fileName);
         business = service.read(fileName);
         businessExt = service.readExt(fileName);
-
-        System.out.println("Данные считаны:");
+        System.out.println("Данные считаны business:");
         System.out.println(business);
+        System.out.println("Данные считаны businessExt:");
         System.out.println(businessExt);
 
 // сериализация стандартная
@@ -58,56 +56,40 @@ public class HomeWork {
         mySerializer.customSerializeWriter(business, TEMP_RDA_OUT);
         System.out.println("Данные записаны на диск в файл " + TEMP_RDA_OUT);
 
-// сериализация exter
+// сериализация объекта реализующего Externalizable
         System.out.println("Записываем данные в файл " + TEMP_RDA_OUT_EXTER);
         mySerializer.customSerializeExtWriter(businessExt, TEMP_RDA_OUT_EXTER);
         System.out.println("Данные записаны на диск в файл " + TEMP_RDA_OUT_EXTER);
 
+// чтение сохраненного состояния из файла в память
+// (инициализируем  стандартно сериализованный объект)
 // очищаем переменную
-//чтение сохраненного состояния из файла в память(инициализируем объект)
         business = null;
-        System.out.println("Значение business: " + business);
-
         JsonParameterSerializeReader myReader = new JsonParameterSerializeReader();
         System.out.println("Считываем данные из файла " + TEMP_RDA_OUT);
         business = myReader.customSerializeReader(TEMP_RDA_OUT);
-        System.out.println("Данные считаны с диска из файл " + TEMP_RDA_OUT);
+        System.out.println("Данные считаны с диска из файла " + TEMP_RDA_OUT);
         System.out.println("Значение business: " + business);
 
-//пишем состояние объекта в JSON
+//пишем состояние объекта в результирующий файл JSON
         ObjectMapper mapper = new ObjectMapper();
         System.out.println("Записываем данные в файл " + RESULT_PARAMETERS_RDA_JSON);
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(RESULT_PARAMETERS_RDA_JSON), business);
         System.out.println("Данные записаны на диск в файл " + RESULT_PARAMETERS_RDA_JSON);
 
-// Ext вариант очищаем переменную
-//чтение сохраненного состояния из файла в память(инициализируем объект)
+//        второй вариант
+// чтение сохраненного состояния из файла в память
+// (инициализируем сериализованный объект реализующий Externalizable)
+// очищаем переменную
         businessExt = null;
-        System.out.println("Значение businessExt: " + businessExt);
-
-        JsonParameterSerializeReader myReaderExt = new JsonParameterSerializeReader();
         System.out.println("Считываем данные из файла " + TEMP_RDA_OUT_EXTER);
-        businessExt = myReaderExt.customSerializeExtReader(TEMP_RDA_OUT_EXTER);
-        System.out.println("Данные считаны с диска из файл " + TEMP_RDA_OUT_EXTER);
+        businessExt = myReader.customSerializeExtReader(TEMP_RDA_OUT_EXTER);
+        System.out.println("Данные считаны с диска из файла " + TEMP_RDA_OUT_EXTER);
         System.out.println("Значение businessExt: " + businessExt);
 
 //пишем состояние объекта в JSON
-//        ObjectMapper mapper = new ObjectMapper();
         System.out.println("Записываем данные в файл " + RESULT_PARAMETERS_RDA_JSON_EXTER);
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(RESULT_PARAMETERS_RDA_JSON_EXTER), businessExt);
         System.out.println("Данные записаны на диск в файл " + RESULT_PARAMETERS_RDA_JSON_EXTER);
-
-//        System.out.println("2 вар Читаем из файла " + TEMP_RDA_OUT_EXTER);
-//        FileInputStream fileInputStream = new FileInputStream(TEMP_RDA_OUT_EXTER);
-//        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-//
-//        business = (JsonFileClass) objectInputStream.readObject();
-//        System.out.println("Данные считаны\n" + business.toString());
-////пишем состояние объекта в JSON
-//
-//        System.out.println("Записываем данные в файл " + RESULT_PARAMETERS_RDA_JSON_EXTER);
-//        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(RESULT_PARAMETERS_RDA_JSON_EXTER), business);
-//        System.out.println("2 вар Данные записаны на диск в файл " + RESULT_PARAMETERS_RDA_JSON_EXTER);
-
     }
 }

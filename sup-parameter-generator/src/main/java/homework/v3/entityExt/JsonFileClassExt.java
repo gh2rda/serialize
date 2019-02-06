@@ -45,12 +45,9 @@ public class JsonFileClassExt implements Externalizable {
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        JsonFileClassExt jsonFileClassExt = new JsonFileClassExt();
-        jsonFileClassExt = (JsonFileClassExt) in.readObject();
-        this.setVersion(jsonFileClassExt.version);
-        this.setParameters(jsonFileClassExt.parameters);
-//        this.version = jsonFileClassExt.version;
-//        this.parameters = jsonFileClassExt.parameters;
+
+        this.version = (String) in.readObject();
+        this.parameters = (List<JsonParametersExt>)in.readObject();
 
     }
 }

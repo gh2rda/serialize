@@ -33,8 +33,7 @@ public class PathExt implements Externalizable {
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        PathExt pathExt = (PathExt) in.readObject();
-        this.code = pathExt.code;
-        this.value = pathExt.value;
+        this.code = (String) in.readObject();
+        this.value = (String) in.readObject();
     }
 }

@@ -6,7 +6,6 @@ import java.io.*;
 import java.util.List;
 
 public class JsonFileClass implements Serializable {
-//public class JsonFileClass implements Serializable, Externalizable {
 
     public static final long SerialVersionUID = 1L;
 

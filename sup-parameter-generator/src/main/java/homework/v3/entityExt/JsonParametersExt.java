@@ -1,16 +1,15 @@
 package homework.v3.entityExt;
 
-//import homework.v3.entryExt.BundleExt;
 import org.codehaus.jackson.annotate.JsonPropertyOrder;
 
 import java.io.*;
 import java.util.List;
 
-@JsonPropertyOrder({"name", "description", "isList", "roles", "type", "bundle"})
+//@JsonPropertyOrder({"name", "description", "isList", "roles", "type", "bundle"})
 public class JsonParametersExt implements Externalizable {
-    
+
     public static final long SerialVersionUID = 1L;
-    
+
     private String name;
     private String description = "";
     private boolean isList;
@@ -70,11 +69,11 @@ public class JsonParametersExt implements Externalizable {
     public String toString() {
 
         String s = "";
-        for (String s1: roles){
+        for (String s1 : roles) {
             s += s1;
         }
 
-        return  name + "\n" +
+        return name + "\n" +
                 description + "\n" +
                 isList + "\n" +
                 type + "\n" +
@@ -95,12 +94,11 @@ public class JsonParametersExt implements Externalizable {
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        JsonParametersExt jsonParametersExt = (JsonParametersExt) in.readObject();
-        this.name = jsonParametersExt.name;
-        this.description = jsonParametersExt.description;
-        this.isList = jsonParametersExt.isList;
-        this.roles = jsonParametersExt.roles;
-        this.type = jsonParametersExt.type;
-        this.bundle = jsonParametersExt.bundle;
+        this.name = (String) in.readObject();
+        this.description = (String) in.readObject();
+        this.isList = (boolean) in.readObject();
+        this.roles = (List<String>) in.readObject();
+        this.type = (String) in.readObject();
+        this.bundle = (List<BundleExt>) in.readObject();
     }
 }

@@ -32,8 +32,7 @@ public class BundleExt implements Externalizable {
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        BundleExt bundleExt = (BundleExt) in.readObject();
-        this.path = bundleExt.path;
-        this.values = bundleExt.values;
+        this.path = (List<PathExt>) in.readObject();
+        this.values = (List<String>) in.readObject();
     }
 }
